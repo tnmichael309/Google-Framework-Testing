@@ -66,6 +66,9 @@ TEST(CommissionTest, SR){
 	EXPECT_STREQ("Invalid input", Commission(71,81,91));
 }
 
+// decision table based testing
+// NOT SUITABLE FOR COMMISSION PROBLEM
+
 // Tests NextDate()
 TEST(NextDateTest, WN) {
 
@@ -141,8 +144,23 @@ TEST(NextDateTest, SR) {
 	EXPECT_STREQ("Invalid input", NextDate(-1,13,32));
 }
 
-
-
+// decision table based testing
+TEST(NextDateTest, decision_table_base) {
+	
+	EXPECT_STREQ("2001/4/16", NextDate(2001,4,15));
+	EXPECT_STREQ("2001/5/1", NextDate(2001,4,30));
+	EXPECT_STREQ("Invalid input", NextDate(2001,4,31));
+	EXPECT_STREQ("2001/1/16", NextDate(2001,1,15));
+	EXPECT_STREQ("2001/2/1", NextDate(2001,1,31));
+	EXPECT_STREQ("2001/12/16", NextDate(2001,12,15));
+	EXPECT_STREQ("2002/1/1", NextDate(2001,12,31));
+	EXPECT_STREQ("2001/1/16", NextDate(2001,2,15));
+	EXPECT_STREQ("2001/2/29", NextDate(2004,2,28));
+	EXPECT_STREQ("2001/3/1", NextDate(2001,2,28));
+	EXPECT_STREQ("2001/3/1", NextDate(2004,2,29));
+	EXPECT_STREQ("Invalid input", NextDate(2001,2,29));
+	EXPECT_STREQ("Invalid input", NextDate(2001,2,30));
+}
 
 // Tests Triangle()
 // weak normal test
@@ -173,5 +191,21 @@ TEST(TriangleTest, SR) {
 	EXPECT_STREQ("Invalid length input", Triangle(5,0,0));
 	EXPECT_STREQ("Invalid length input", Triangle(0,5,0));
 	EXPECT_STREQ("Invalid length input", Triangle(0,0,0));
+}
+
+// decision table based testing
+TEST(TriangleTest, decision_table_base) {
+	EXPECT_STREQ("Not a triangle", Triangle(4,1,2));
+	EXPECT_STREQ("Not a triangle", Triangle(1,4,2));
+	EXPECT_STREQ("Not a triangle", Triangle(1,2,4));
+	EXPECT_STREQ("Equilateral", Triangle(5,5,5));
+	EXPECT_STREQ("Isosceles", Triangle(2,2,3));
+	EXPECT_STREQ("Isosceles", Triangle(2,3,2));
+	EXPECT_STREQ("Isosceles", Triangle(3,2,2));
+	EXPECT_STREQ("Scalene", Triangle(3,4,5));
+	EXPECT_STREQ("Scalene", Triangle(5,3,4));
+	EXPECT_STREQ("Scalene", Triangle(3,5,4));
+	EXPECT_STREQ("Non-special triangle", Triangle(3,4,6));
+	
 }
 
