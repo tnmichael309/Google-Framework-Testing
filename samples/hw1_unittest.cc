@@ -2,6 +2,70 @@
 #include "hw1.h"
 #include "gtest/gtest.h"
 
+//Tests for Commission(int nLock, int nBarrel, int nStock)
+// Return expected sells
+// 1 <= nLock <= 70 or nLock = -1
+// 1 <= nBarrel <= 80
+// 1 <= nStock <= 90
+// lock: $45, barrel: $25, stock: $30
+// commission rate: 10%
+TEST(CommissionTest, WN){
+	EXPECT_STREQ("Program terminates", Commission(-1,1,1));
+	EXPECT_STREQ("10", Commission(1,1,1));
+	EXPECT_STREQ("320", Commission(70,1,1));
+	EXPECT_STREQ("207", Commission(1,80,1));
+	EXPECT_STREQ("277", Commission(1,1,90));
+}
+
+TEST(CommissionTest, WR){
+	EXPECT_STREQ("Invalid input", Commission(-2,1,1));
+	EXPECT_STREQ("Invalid input", Commission(0,1,1));
+	EXPECT_STREQ("Invalid input", Commission(71,1,1));
+	EXPECT_STREQ("Invalid input", Commission(1,0,1));
+	EXPECT_STREQ("Invalid input", Commission(1,81,1));
+	EXPECT_STREQ("Invalid input", Commission(1,1,0));
+	EXPECT_STREQ("Invalid input", Commission(1,1,91));
+}
+
+TEST(CommissionTest, SR){
+
+	// lock + barrel
+	EXPECT_STREQ("Invalid input", Commission(-2,0,1));
+	EXPECT_STREQ("Invalid input", Commission(0,0,1));
+	EXPECT_STREQ("Invalid input", Commission(71,0,1));
+	EXPECT_STREQ("Invalid input", Commission(-2,81,1));
+	EXPECT_STREQ("Invalid input", Commission(0,81,1));
+	EXPECT_STREQ("Invalid input", Commission(71,81,1));
+	
+	// lock + stock
+	EXPECT_STREQ("Invalid input", Commission(-2,1,0));
+	EXPECT_STREQ("Invalid input", Commission(0,1,0));
+	EXPECT_STREQ("Invalid input", Commission(71,1,0));
+	EXPECT_STREQ("Invalid input", Commission(-2,1,91));
+	EXPECT_STREQ("Invalid input", Commission(0,1,91));
+	EXPECT_STREQ("Invalid input", Commission(71,1,91));
+	
+	// barrel + stock
+	EXPECT_STREQ("Invalid input", Commission(1,81,0));
+	EXPECT_STREQ("Invalid input", Commission(1,81,91));
+	EXPECT_STREQ("Invalid input", Commission(1,0,0));
+	EXPECT_STREQ("Invalid input", Commission(1,0,91));
+	
+	// all
+	EXPECT_STREQ("Invalid input", Commission(-2,0,0));
+	EXPECT_STREQ("Invalid input", Commission(0,0,0));
+	EXPECT_STREQ("Invalid input", Commission(71,0,0));
+	EXPECT_STREQ("Invalid input", Commission(-2,81,0));
+	EXPECT_STREQ("Invalid input", Commission(0,81,0));
+	EXPECT_STREQ("Invalid input", Commission(71,81,0));
+	EXPECT_STREQ("Invalid input", Commission(-2,0,91));
+	EXPECT_STREQ("Invalid input", Commission(0,0,91));
+	EXPECT_STREQ("Invalid input", Commission(71,0,91));
+	EXPECT_STREQ("Invalid input", Commission(-2,81,91));
+	EXPECT_STREQ("Invalid input", Commission(0,81,91));
+	EXPECT_STREQ("Invalid input", Commission(71,81,91));
+}
+
 // Tests NextDate()
 TEST(NextDateTest, WN) {
 

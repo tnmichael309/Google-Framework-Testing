@@ -1,5 +1,32 @@
 #include "hw1.h"
 
+// Return expected sells
+// 1 <= nLock <= 70 or nLock = -1
+// 1 <= nBarrel <= 80
+// 1 <= nStock <= 90
+// lock: $45, barrel: $25, stock: $30
+// commission rate: 10%
+const char* Commission(int nLock, int nBarrel, int nStock){
+
+	if(nLock < -1 || nLock == 0 || nLock > 70) return "Invalid input";
+	if(nBarrel == 0 || nBarrel > 80) return "Invalid input";
+	if(nStock == 0 || nStock > 90) return "Invalid input";
+	
+	if(nLock == -1) return "Program terminates";
+	
+	int sell = nLock*45 + nBarrel*25 + nStock*30;
+	sell/=10;
+	
+	static char buffer[50];
+	int n = 0;
+	sprintf(buffer, "%d", sell);
+	
+	buffer[n] = '\0';
+	
+	return buffer;
+}
+
+
 // Returns next date
 const char* NextDate(int year, int month, int day){
 	
