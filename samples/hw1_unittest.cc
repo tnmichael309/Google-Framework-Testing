@@ -154,10 +154,10 @@ TEST(NextDateTest, decision_table_base) {
 	EXPECT_STREQ("2001/2/1", NextDate(2001,1,31));
 	EXPECT_STREQ("2001/12/16", NextDate(2001,12,15));
 	EXPECT_STREQ("2002/1/1", NextDate(2001,12,31));
-	EXPECT_STREQ("2001/1/16", NextDate(2001,2,15));
-	EXPECT_STREQ("2001/2/29", NextDate(2004,2,28));
+	EXPECT_STREQ("2001/2/16", NextDate(2001,2,15));
+	EXPECT_STREQ("2004/2/29", NextDate(2004,2,28));
 	EXPECT_STREQ("2001/3/1", NextDate(2001,2,28));
-	EXPECT_STREQ("2001/3/1", NextDate(2004,2,29));
+	EXPECT_STREQ("2004/3/1", NextDate(2004,2,29));
 	EXPECT_STREQ("Invalid input", NextDate(2001,2,29));
 	EXPECT_STREQ("Invalid input", NextDate(2001,2,30));
 }
