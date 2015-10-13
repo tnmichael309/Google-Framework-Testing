@@ -19,7 +19,7 @@ const char* Commission(int nLock, int nBarrel, int nStock){
 	
 	static char buffer[50];
 	int n = 0;
-	sprintf(buffer, "%d", sell);
+	n = sprintf(buffer, "%d", sell);
 	
 	buffer[n] = '\0';
 	
